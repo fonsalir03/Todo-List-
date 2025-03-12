@@ -18,7 +18,14 @@ function TaskItem(title, description, dueDate, priority){
     });
 
     this.updatePriority = (function(newPriority){
-        this.priority = newPriority;
+        const MAX_PRIORITY = 3
+        if (typeof newPriority != "number"){
+            console.log("invalid input, must be number");
+            return
+        }else if (newPriority >= 1 && newPriority <= MAX_PRIORITY){
+            this.priority = newPriority;
+        }
+        
     });
 
     this.toggleCompleted = (function(){
