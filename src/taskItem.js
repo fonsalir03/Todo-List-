@@ -1,3 +1,5 @@
+import {isPast} from "date-fns";
+
 function TaskItem(title, description, dueDate, priority){
     this.title = title;
     this.description = description;
@@ -13,8 +15,14 @@ function TaskItem(title, description, dueDate, priority){
         this.description = newDescription;
     });
 
-    this.updateDueDate = (function(newDueDate){
-        this.dueDate = newDueDate;
+    this.updateDueDate = (function(year, month, day){
+        const monthIndex = month - 1;
+        const newDate = new Date(year, monthIndex, day);
+        if (isPast(newDate) == false){
+            this.dueDate = newDate;
+        }else{
+            console.log("Due date must be a day that has not passed!");
+        }
     });
 
     this.updatePriority = (function(newPriority){
