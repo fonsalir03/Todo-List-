@@ -1,11 +1,23 @@
-function Project(name){
-    this.name = name;
-    this.taskList = [];
+class Project{
+    _name = "";
+    _taskList = [];
 
-    this.addTask = function(taskItemObj){
-        this.taskList.push(taskItemObj);
+    constructor(name){
+        this.name = name
     }
-    this.removeTask = function(index){
-        this.taskList.splice(index,1);
+
+    get name(){
+        return this._name
+    }
+    set name(newName){
+        this._name = newName
+    }
+
+    add(taskItemObj){
+        this._taskList.push(taskItemObj);
+    }
+    del(index){
+        this._taskList.splice(index,1)
     }
 }
+export {Project}
