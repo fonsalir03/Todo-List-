@@ -2,19 +2,19 @@ import { TaskItem } from "./taskItem";
 import { Project } from "./project";
 
 class ProjectHandler{
-    _ProjectIndex = 0
-    _projects = []
+    _ProjectIndex = 0;
+    _projects = [];
 
     constructor(){
-        this._selectedProject = new Project("default")
+        this._selectedProject = new Project("default");
     }
 
     get currentProject(){
-        return this._projects[this._ProjectIndex]
+        return this._projects[this._ProjectIndex];
     }
 
     add(ProjectName){
-        this._projects.push(new Project(ProjectName))
+        this._projects.push(new Project(ProjectName));
     }
 
     next(){
@@ -30,17 +30,16 @@ class ProjectHandler{
     }
 
     delete(){
+        //references to project length and the current index
         const ProjLen = this._projects.length;
         const ProjIndex = this._ProjectIndex;
         if ( ProjLen == 0){
             return;
         }
         this._projects.splice(ProjIndex,1)
-        if(ProjIndex == 0){
-            this.next()
-        }
+        //if the currently selected project is at the end of the array, move the previous
         if(ProjIndex == ProjLen - 1){
-            this.prev()
+            this.prev();
         }
     }
 }
