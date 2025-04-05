@@ -40,21 +40,25 @@ export class domHandler{
         //task creation button
         this.createTaskButton = document.createElement("button");
         this.createTaskButton.setAttribute("id", "create-task");
+        this.createTaskButton.textContent = "Create Task"
         this.taskSectionDiv.appendChild(this.createTaskButton);
 
         //view all tasks buttons
         this.viewTasksButton = document.createElement("button");
         this.viewTasksButton.setAttribute("id", "view-tasks");
+        this.viewTasksButton.textContent = "All Tasks";
         this.taskSectionDiv.appendChild(this.viewTasksButton);
 
         //create project button
         this.createProjectButton = document.createElement("button");
         this.createProjectButton.setAttribute("id", "create-projet");
+        this.createProjectButton.textContent = "Create Project";
         this.projectSectionDiv.appendChild(this.createProjectButton);
 
         //view projects button
         this.viewProjectsButton = document.createElement("button");
         this.viewProjectsButton.setAttribute("id", "view-projects");
+        this.viewProjectsButton.textContent = "All Projects"
         this.projectSectionDiv.appendChild(this.viewProjectsButton);
     }
 
