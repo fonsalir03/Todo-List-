@@ -2,7 +2,7 @@ import { TaskItem } from "./taskItem";
 import { Project } from "./project";
 
 class ProjectHandler{
-    _ProjectIndex = 0;
+    _projectIndex = 0;
     _projects = [];
 
     constructor(){
@@ -10,7 +10,7 @@ class ProjectHandler{
     }
 
     get currentProject(){
-        return this._projects[this._ProjectIndex];
+        return this._projects[this._projectIndex];
     }
 
     add(ProjectName){
@@ -18,21 +18,21 @@ class ProjectHandler{
     }
 
     next(){
-        if (this._projects.length - 1 > this._ProjectIndex){
-            this._ProjectIndex += 1;
+        if (this._projects.length - 1 > this._projectIndex){
+            this._projectIndex += 1;
         } 
     }
 
     prev(){
-        if (this._ProjectIndex > 0){
-            this._ProjectIndex -=1;
+        if (this._projectIndex > 0){
+            this._projectIndex -=1;
         }
     }
 
     delete(){
         //references to project length and the current index
         const ProjLen = this._projects.length;
-        const ProjIndex = this._ProjectIndex;
+        const ProjIndex = this._projectIndex;
         if ( ProjLen == 0){
             return;
         }
