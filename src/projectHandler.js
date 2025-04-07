@@ -31,17 +31,21 @@ class ProjectHandler{
 
     delete(){
         //references to project length and the current index
-        const ProjLen = this.#projects.length;
         const ProjIndex = this.#projectIndex;
-        if ( ProjLen == 0){
+
+        if ( this.#projects.length == 0){
             return;
         }
-        this.#projects.splice(ProjIndex,1)
+        this.#projects.splice(this.#projectIndex,1)
+
         //if the currently selected project is at the end of the array, move the previous
-        if(ProjIndex == ProjLen - 1){
+        if(this.#projectIndex == this.#projects.length - 1){
             this.prev();
+        }
+        //if there are no more projects, add a default project
+        if (this.#projects.length == 0){
+            this.#projects.push(new Project("default"))
         }
     }
 }
-
 export {ProjectHandler}
