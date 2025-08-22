@@ -1,8 +1,13 @@
+
+
 export class domHandler{
 
     constructor(){
         this.CreateMainContainers();
         this.CreateToolbarButtons();
+        this.CreateTaskForm();
+        //testing
+        this.taskDialog.show()
         
         document.body.appendChild(this.mainContentDiv)
     }
@@ -44,7 +49,8 @@ export class domHandler{
         this.taskSectionDiv.appendChild(this.createTaskButton);
 
         //view all tasks buttons
-        this.viewTasksButton = document.createElement("button");
+        this.
+        viewTasksButton = document.createElement("button");
         this.viewTasksButton.setAttribute("id", "view-tasks");
         this.viewTasksButton.textContent = "All Tasks";
         this.taskSectionDiv.appendChild(this.viewTasksButton);
@@ -60,6 +66,33 @@ export class domHandler{
         this.viewProjectsButton.setAttribute("id", "view-projects");
         this.viewProjectsButton.textContent = "All Projects"
         this.projectSectionDiv.appendChild(this.viewProjectsButton);
+    }
+
+    CreateTaskForm(){
+        //create task item dialog so the user can close the form when submitted
+        this.taskDialog = document.createElement("dialog");
+        this.taskDialog.setAttribute("id", "task-dialog");
+
+        //create the task form, nested in taskDialog
+        this.taskForm = document.createElement("form");
+        this.taskForm.setAttribute("id", "task-form");
+        this.taskDialog.appendChild(this.taskForm);
+        //--just start with creating the elements, worry about the attributes later
+        //nested in the form
+        //  create the title input using textarea
+
+        //  create the description input
+
+        //  create the due date date picker
+
+        //  create label for the priority "How important is this task?" "What is the priority?"
+        //  create the priority selection
+
+        //  create the cancel button
+
+        //  create the submit button
+
+        document.body.appendChild(this.taskDialog)
     }
 
 }
