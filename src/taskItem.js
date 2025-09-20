@@ -54,9 +54,9 @@ class TaskItem{
         }
     }
 
-    toggleCompleted = (function(){
+    toggleCompleted(){
         this.completed = !this.completed;
-    });
+    };
 
 }
 
