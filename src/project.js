@@ -1,23 +1,11 @@
-class Project{
-    _name = "";
-    _taskList = [];
+import { Handler } from "./handler.js";
 
-    constructor(name){
+export class Project extends Handler{
+    constructor(name) {
+        super()
         this.name = name
     }
-
-    get name(){
-        return this._name
-    }
-    set name(newName){
-        this._name = newName
-    }
-
-    add(taskItemObj){
-        this._taskList.push(taskItemObj);
-    }
-    del(index){
-        this._taskList.splice(index,1)
+    updateName(newName){
+        this.name = newName
     }
 }
-export {Project}
