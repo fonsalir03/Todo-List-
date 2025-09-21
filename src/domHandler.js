@@ -49,8 +49,7 @@ export class domHandler{
         this.taskSectionDiv.appendChild(this.createTaskButton);
 
         //view all tasks buttons
-        this.
-        viewTasksButton = document.createElement("button");
+        this.viewTasksButton = document.createElement("button");
         this.viewTasksButton.setAttribute("id", "view-tasks");
         this.viewTasksButton.textContent = "All Tasks";
         this.taskSectionDiv.appendChild(this.viewTasksButton);
