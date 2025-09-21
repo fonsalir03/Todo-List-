@@ -1,10 +1,10 @@
 import {isPast} from "date-fns";
 
 class TaskItem{
-    _title = undefined
-    _description = undefined
-    _dueDate = undefined
-    _priority = undefined
+    #title = undefined
+    #description = undefined
+    #dueDate = undefined
+    #priority = undefined
     completed = false;
 
     constructor(title, description, dueDate, priority){
@@ -15,34 +15,34 @@ class TaskItem{
     }
 
     get title(){
-        return this._title
+        return this.#title
     }
     set title(newTitle){
-        this._title = newTitle;
+        this.#title = newTitle;
     }
     
     get description(){
-        return this._description;
+        return this.#description;
     }
     set description(newDescription){
-        this._description = newDescription
+        this.#description = newDescription
     }
 
     get dueDate(){
-        return this._dueDate
+        return this.#dueDate
     }
     set dueDate(dateArr){
         const year = dateArr[0], monthIndex = dateArr[1] - 1, day = dateArr[2];
         const newDate = new Date(year, monthIndex, day);
         if (isPast(newDate) == false){
-            this._dueDate = newDate
+            this.#dueDate = newDate
         }else{
             console.log("Due date must be a day that has not passed!");
         }
     }
 
     get priority(){
-        return this._priority;
+        return this.#priority;
     }
     set priority(newPriority){
         const MAX_PRIORITY = 3
@@ -50,7 +50,7 @@ class TaskItem{
             console.log("invalid input, must be number");
             return
         }else if (newPriority >= 1 && newPriority <= MAX_PRIORITY){
-            this._priority = newPriority;
+            this.#priority = newPriority;
         }
     }
 
