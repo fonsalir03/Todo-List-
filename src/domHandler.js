@@ -82,18 +82,20 @@ export class DomHandler{
         this.formTitleInput = document.createElement("input");
         this.formTitleInput.setAttribute("type", "text");
         this.formTitleInput.setAttribute("id", "form-title");
+        this.formTitleInput.setAttribute("required", "")
         this.form.appendChild(this.formTitleInput);
 
         //  form description
         this.formDescriptionInput = document.createElement("textarea");
         this.formDescriptionInput.setAttribute("id", "form-description");
         this.form.appendChild(this.formDescriptionInput);
-        
+
         if (type == "task"){
             //  form date picker
             this.formDateInput = document.createElement("input");
             this.formDateInput.setAttribute("type", "date");
             this.formDateInput.setAttribute("id", "form-date");
+            this.formDateInput.setAttribute("required", "")
             this.form.appendChild(this.formDateInput);
 
             //  priority
@@ -137,7 +139,7 @@ export class DomHandler{
         this.formCancelButton = document.createElement("button");
         this.formCancelButton.setAttribute("id", "form-cancel-button");
         this.formCancelButton.textContent = "Cancel";
-        this.form.appendChild(this.formCancelButton);
+        this.dialog.appendChild(this.formCancelButton);
 
         document.body.appendChild(this.dialog); 
     }
