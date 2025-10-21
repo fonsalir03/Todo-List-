@@ -1,3 +1,5 @@
+import { Project } from "./project"
+
 export class Handler{
 
     constructor() {
@@ -13,8 +15,9 @@ export class Handler{
     delete(index){
         this.items.splice(index,1)
     }
-    add(item){
-        this.items.push(item)
+    add(title, desc){
+        const newProject = new Project(title, desc)
+        this.items.push(newProject)
     }
 };
 
