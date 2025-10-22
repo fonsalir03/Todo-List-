@@ -76,6 +76,7 @@ export class DomHandler{
         // form
         this.form = document.createElement("form");
         this.form.setAttribute("id", "data-form");
+        this.form.setAttribute("data-type", type)
         this.dialog.appendChild(this.form);
 
         //  form title
