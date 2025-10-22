@@ -1,4 +1,39 @@
 
+class DOMProject {
+    constructor(){
+        this.createProjectContainers()
+    }
+
+    createProjectContainers(){
+    
+    // project container
+    this.projectContainer = document.createElement("div");
+    this.projectContainer.setAttribute("id", "project-container");
+
+    // project title container
+    this.projectTitleContainer = document.createElement("div");
+    this.projectTitleContainer.setAttribute("id", "project-title");
+    this.projectContainer.appendChild(this.projectTitleContainer);
+
+    // project description
+    this.projectDescription = document.createElement("div");
+    this.projectDescription.setAttribute("id", "project-description");
+    this.projectDescription.hidden = true;
+    this.projectContainer.appendChild(this.projectDescription);
+
+    // project add task button
+    this.projectAddTaskButton = document.createElement("button");
+    this.projectAddTaskButton.setAttribute("id", "project-add-task-button");
+    this.projectContainer.appendChild(this.projectAddTaskButton);
+
+    // project task container
+    this.projectTaskContainer = document.createElement("div");
+    this.projectTaskContainer.setAttribute("id", "project-task-container");
+    this.projectContainer.appendChild(this.projectTaskContainer);
+    
+    }
+
+}
 
 export class DomHandler{
 
@@ -40,18 +75,6 @@ export class DomHandler{
     }
 
     CreateToolbarButtons(){
-        
-        //task creation button
-        this.createTaskButton = document.createElement("button");
-        this.createTaskButton.setAttribute("id", "create-task");
-        this.createTaskButton.textContent = "Create Task"
-        this.taskSectionDiv.appendChild(this.createTaskButton);
-
-        //view all tasks buttons
-        this.viewTasksButton = document.createElement("button");
-        this.viewTasksButton.setAttribute("id", "view-tasks");
-        this.viewTasksButton.textContent = "All Tasks";
-        this.taskSectionDiv.appendChild(this.viewTasksButton);
 
         //create project button
         this.createProjectButton = document.createElement("button");
@@ -149,4 +172,18 @@ export class DomHandler{
         this.dialog.show();
     }
 
+    // CreateProjectContainers()
+
+    // RenderProject(projectInstance)
+    renderProject(project){
+        const newDOMProject = new DOMProject();
+
+        newDOMProject.projectTitleContainer.textContent = project.name;
+        if (project.description != ""){
+            newDOMProject.projectDescription.textContent = project.description;
+            newDOMProject.projectDescription.hidden = false;
+        }
+        
+        this.viewerDiv.appendChild(newDOMProject.projectContainer);
+    }
 }

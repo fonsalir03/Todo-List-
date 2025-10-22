@@ -25,9 +25,18 @@ export class EventHandler{
         document.body.addEventListener("submit", (event) => {
             event.preventDefault()
             const formData = new FormData(dom.form)
-            this.projectHandler.add(formData.get("title"), formData.get("description"))
+
+            //read the "data-type" on the form and use that to determine what handler to call
+            const projectTitle = formData.get("title");
+            const projectDescription = formData.get("description");
+            dom.renderProject(this.projectHandler.add(projectTitle, projectDescription));
+
             dom.dialog.remove()
+
         })
 
-    } 
+    }
+
+    // callback functions
+    // move the event listener call back functions to their own functions for easy modification
 };
