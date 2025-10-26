@@ -15,9 +15,10 @@ export class Handler{
     delete(index){
         this.items.splice(index,1)
     }
-    add(title, desc){
+    create(title, desc){
         const newProject = new Project(title, desc)
         this.items.push(newProject)
+        return newProject
     }
 };
 
