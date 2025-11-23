@@ -1,6 +1,6 @@
-import {isPast} from "date-fns";
+import {isPast, parse, format} from "date-fns";
 
-class TaskItem{
+export class TaskItem{
     #title = undefined
     #description = undefined
     #dueDate = undefined
@@ -29,15 +29,15 @@ class TaskItem{
     }
 
     get dueDate(){
-        return this.#dueDate
+        return format(this.#dueDate, "MM/dd/yyyy")
     }
-    set dueDate(dateArr){
-        const year = dateArr[0], monthIndex = dateArr[1] - 1, day = dateArr[2];
-        const newDate = new Date(year, monthIndex, day);
+    set dueDate(dateStr){
+        //const year = dateArr[0], monthIndex = dateArr[1] - 1, day = dateArr[2];
+        const newDate = parse(dateStr, "yyyy-MM-dd", new Date())
+        this.#dueDate = newDate
+
         if (isPast(newDate) == false){
-            this.#dueDate = newDate
-        }else{
-            console.log("Due date must be a day that has not passed!");
+            //TASK IS OUTDATED
         }
     }
 
@@ -60,6 +60,5 @@ class TaskItem{
 
 }
 
-export {TaskItem}
 
 
