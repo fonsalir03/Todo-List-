@@ -27,12 +27,78 @@ class DOMProject {
     this.projectContainer.appendChild(this.projectAddTaskButton);
 
     // project task container
-    this.projectTaskContainer = document.createElement("div");
-    this.projectTaskContainer.setAttribute("id", "project-task-container");
-    this.projectContainer.appendChild(this.projectTaskContainer);
+    this.projectTasksContainer = document.createElement("div");
+    this.projectTasksContainer.setAttribute("id", "project-tasks-container");
+    this.projectContainer.appendChild(this.projectTasksContainer);
     
     }
 
+}
+
+// DOMTask(DOMProject)
+class DOMTask {
+    constructor(DOMProject){
+        this.project = DOMProject;
+        this.createContainersAndButtons()
+    }
+
+    appendChildren(){
+        this.taskContainer.appendChild(this.taskTitleContainer);
+        this.taskContainer.appendChild(this.taskDescriptionContainer);
+        this.taskContainer.appendChild(this.taskDuedateContainer);
+        this.taskContainer.appendChild(this.taskCompletedToggle);
+        this.taskContainer.appendChild(this.fullDetailsToggle);
+        this.taskContainer.appendChild(this.taskDeleteButton);
+    }
+
+    createContainersAndButtons() {
+    
+    // taskContainer
+    this.taskContainer = document.createElement("div");
+    this.taskContainer.setAttribute("id", "task-container");
+
+    // taskTitleContainer : persistent
+    this.taskTitleContainer = document.createElement("div");
+    this.taskTitleContainer.setAttribute("id", "task-title");
+
+    // taskDescriptionContainer
+    this.taskDescriptionContainer = document.createElement("div");
+    this.taskDescriptionContainer.setAttribute("id", "task-description");
+
+    // taskDuedateContainer : persistent
+    this.taskDuedateContainer = document.createElement("div");
+    this.taskDuedateContainer.setAttribute("id", "task-due-date");
+
+    // taskCompletedToggle
+    this.taskCompletedToggle = document.createElement("button");
+    this.taskCompletedToggle.setAttribute("id", "task-complete-toggle");
+
+    // fulldetailsToggle : persistent
+    this.fullDetailsToggle = document.createElement("button");
+    this.fullDetailsToggle.setAttribute("id", "task-details-toggle");
+    
+    // taskDeleteButton
+    this.taskDeleteButton = document.createElement("button");
+    this.taskDeleteButton.setAttribute("id", "task-delete-button");
+    
+    this.appendChildren();
+    // project-task-container
+    this.project.children[3].appendChild(this.taskContainer)
+
+    }
+
+    //minimize() will hide all non persistent elements
+    minimize() {
+        this.taskDescriptionContainer.hidden = true;
+        this.taskCompletedToggle.hidden = true;
+        this.taskDeleteButton.hidden = true;
+    }
+    //maximize() will unhide all non persitent elements
+    maximize() {
+        this.taskDescriptionContainer.hidden = true;
+        this.taskCompletedToggle.hidden = true;
+        this.taskDeleteButton.hidden = true;
+    }
 }
 
 export class DomHandler{
@@ -78,7 +144,7 @@ export class DomHandler{
 
         //create project button
         this.createProjectButton = document.createElement("button");
-        this.createProjectButton.setAttribute("id", "create-projet");
+        this.createProjectButton.setAttribute("id", "create-project");
         this.createProjectButton.textContent = "Create Project";
         this.projectSectionDiv.appendChild(this.createProjectButton);
 
@@ -89,7 +155,7 @@ export class DomHandler{
         this.projectSectionDiv.appendChild(this.viewProjectsButton);
     }
 
-    CreateForm(type){
+    CreateForm(type, projectIndex){
         //check for if the form is for a task item or project
 
         // dialog
@@ -128,12 +194,12 @@ export class DomHandler{
             //  priority
             this.formPriorityLabel = document.createElement("label");
             this.formPriorityLabel.textContent = "How important is this task?";
-            this.formPriorityLabel.setAttribute("for","form-priority");
+            this.formPriorityLabel.setAttribute("for","priority");
             this.form.appendChild(this.formPriorityLabel);
 
             //  create the priority selection
             this.formPriority = document.createElement("select");
-            this.formPriority.setAttribute("name", "form-priortity");
+            this.formPriority.setAttribute("name", "priority");
 
             // priority option 1 : low
             this.formPriorityOption1 = document.createElement("option");
@@ -159,6 +225,7 @@ export class DomHandler{
         //Submit button
         this.formSubmitButton = document.createElement("button");
         this.formSubmitButton.setAttribute("id", "form-submit-button");
+        this.formSubmitButton.setAttribute("data-project-index", projectIndex)
         this.formSubmitButton.textContent = "Submit";
         this.form.appendChild(this.formSubmitButton);       
 
@@ -172,8 +239,6 @@ export class DomHandler{
         this.dialog.show();
     }
 
-    // CreateProjectContainers()
-
     // RenderProject(projectInstance)
     renderProject(project){
         const newDOMProject = new DOMProject();
@@ -185,5 +250,15 @@ export class DomHandler{
         }
         
         this.viewerDiv.appendChild(newDOMProject.projectContainer);
+    }
+
+    renderTask(taskObj, DOMProject){
+        console.log(taskObj)
+        const newDOMTask = new DOMTask(DOMProject)
+        newDOMTask.taskTitleContainer.textContent = taskObj.title
+        newDOMTask.taskDescriptionContainer.textContent = taskObj.description
+        newDOMTask.taskDuedateContainer.textContent = taskObj.dueDate
+        //project task item container
+
     }
 }
